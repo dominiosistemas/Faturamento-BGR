@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faturamento para BGR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"], .btn {
+            width: 100%;
+            padding: 10px 0;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover, .btn:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
+        .empresa {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .empresa img {
+            width: 200px;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <img src="https://bgr-aws-int.dominiosistemas.com.br/imagens/modulos/Gerador.jpg" alt="Logo">
+        <h2>Faturamento para BGR</h2>
+    </div>
+
+    <form id="form">
+        <label for="valor">Valor em R$:</label>
+        <input type="text" id="valor" name="valor"><br><br>
+        
+        <label for="tempo">Tempo serviço:</label><br>
+        <input type="radio" id="tempo_1h" name="tempo" value="1h" checked>
+        <label for="tempo_1h">1h</label><br>
+        
+        <input type="radio" id="tempo_2h" name="tempo" value="2h">
+        <label for="tempo_2h">2h</label><br>
+        
+        <input type="radio" id="tempo_3h" name="tempo" value="3h">
+        <label for="tempo_3h">3h</label><br>
+        
+        <input type="radio" id="tempo_4h" name="tempo" value="4h">
+        <label for="tempo_4h">4h</label><br>
+        
+        <input type="radio" id="tempo_5h" name="tempo" value="5h">
+        <label for="tempo_5h">5h</label><br>
+        
+        <input type="radio" id="tempo_6h" name="tempo" value="6h">
+        <label for="tempo_6h">6h</label><br>
+        
+        <input type="radio" id="tempo_7h" name="tempo" value="7h">
+        <label for="tempo_7h">7h</label><br>
+        
+        <input type="radio" id="tempo_8h" name="tempo" value="8h">
+        <label for="tempo_8h">8h</label><br>
+        
+        <input type="radio" id="tempo_10h" name="tempo" value="10h">
+        <label for="tempo_10h">10h</label><br><br>
+        
+        <label for="parcela">Parcelas:</label><br>
+        <input type="radio" id="parcela_unica" name="parcela" value="parcela_unica" checked>
+        <label for="parcela_unica">Parcela única</label><br>
+        
+        <input type="radio" id="parcela_2x" name="parcela" value="parcela_2x">
+        <label for="parcela_2x">2x</label><br>
+        
+        <input type="radio" id="parcela_3x" name="parcela" value="parcela_3x">
+        <label for="parcela_3x">3x</label><br>
+        
+        <input type="radio" id="parcela_4x" name="parcela" value="parcela_4x">
+        <label for="parcela_4x">4x</label><br>
+        
+        <input type="radio" id="parcela_5x" name="parcela" value="parcela_5x">
+        <label for="parcela_5x">5x</label><br><br>
+        
+        <input type="submit" value="Gerar Trâmite para Apoio">
+    </form>
+
+    <div id="resultado">
+        <!-- Aqui será exibido o resultado -->
+    </div>
+
+    <button id="copiarTexto" class="btn">Copiar Texto Faturamento - Cliente</button>
+
+    <div class="empresa">
+        <img src="https://1000logos.net/wp-content/uploads/2021/05/Thomson-Reuters-logo.png" alt="Thomson Reuters">
+    </div>
+</div>
+
+<div id="novaSituacao" style="display: none;">
+    <p id="mensagemSaudacao"></p>!
+
+Para o desenvolvimento do relatório informado, terá o valor discriminado nesta SSC.
+
+Informamos que após aceitar o custo, o relatório será criado conforme o que foi acordado, não serão adicionados novas colunas e não serão trocadas as regras de colunas previamente especificadas. Caso deseje alguma manutenção no relatório, poderá ser feito sem custo após a conclusão desta SSC. Iremos apenas ajustar valores que possam estar divergentes.
+
+Caso desejar adicionar mais colunas, informar novas regras ou possuir alguma dúvida, peço que faça antes do aceite do custo. Campos não informados ou que não existam no sistema ficarão em branco.
+
+**Obs: Prazo para entrega do relatório é de até 10 dias úteis.
+
+Seguimos à disposição, 
+Obrigado!
+</div>
+
+<script>
+    // Função para obter a saudação com base no horário atual
+    function getSaudacao() {
+        const agora = new Date();
+        const hora = agora.getHours();
+        if (hora >= 6 && hora < 12) {
+            return "Bom dia";
+        } else if (hora >= 12 && hora < 18) {
+            return "Boa tarde";
+        } else {
+            return ""; // Não retornamos saudação para a noite
+        }
+    }
+
+    // Atualiza o conteúdo da div de saudação
+    function atualizarSaudacao() {
+        const saudacao = getSaudacao();
+        document.getElementById('mensagemSaudacao').textContent = saudacao;
+    }
+
+    // Adiciona um evento de clique ao botão "copiar texto"
+    document.getElementById('copiarTexto').addEventListener('click', function() {
+        // Atualiza a saudação antes de copiar o texto
+        atualizarSaudacao();
+
+        // Obtém o texto completo da div "novaSituacao"
+        const texto = document.getElementById('novaSituacao').textContent.trim();
+        
+        // Copia o texto para a área de transferência
+        navigator.clipboard.writeText(texto).then(function() {
+            alert('Texto copiado para a área de transferência!');
+        }, function(err) {
+            console.error('Falha ao copiar o texto: ', err);
+        });
+    });
+
+    // Adiciona um evento de envio ao formulário
+    document.getElementById('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita o recarregamento da página ao enviar o formulário
+
+        // Captura os valores digitados nos campos
+        const valor = document.getElementById('valor').value;
+        const tempo = document.querySelector('input[name="tempo"]:checked').value;
+        const parcela = document.querySelector('input[name="parcela"]:checked').value;
+
+        // Obtem a quantidade de parcelas selecionadas
+        let quantidadeParcelas = parcela === "parcela_unica" ? "Parcela única" : parcela.charAt(parcela.length - 2) + "x";
+
+        // Monta o texto do resultado
+        let resultadoText = `${getSaudacao()}!\n\n`;
+		resultadoText += `Por gentileza, gerar faturamento para o BGR em questão, conforme retorno da SS:\n\n`;
+        resultadoText += `Valor: R$ ${valor}\n`;
+        resultadoText += `Tempo serviço: ${tempo}\n`;
+        resultadoText += `${quantidadeParcelas}.\n\n`;
+        resultadoText += `Obrigado!`;
+
+        // Exibe o resultado
+        document.getElementById('resultado').textContent = resultadoText.trim();
+
+        // Copia o resultado para a área de transferência
+        navigator.clipboard.writeText(resultadoText.trim()).then(function() {
+            alert('Resultado copiado para a área de transferência!');
+        }, function(err) {
+            console.error('Falha ao copiar o resultado: ', err);
+        });
+    });
+</script>
+
+</body>
+</html>
